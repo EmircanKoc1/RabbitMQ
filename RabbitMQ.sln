@@ -3,9 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Publisher", "RabbitMQ.Publisher\RabbitMQ.Publisher.csproj", "{A9FED065-C5A0-4BD9-B2E2-A58593898F3E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Publisher", "RabbitMQ.Publisher\RabbitMQ.Publisher.csproj", "{A9FED065-C5A0-4BD9-B2E2-A58593898F3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RabbitMQ.Consumer", "RabbitMQ.Consumer\RabbitMQ.Consumer.csproj", "{E3EE7F2A-19EB-4932-90C7-34B586C328F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RabbitMQ.Consumer", "RabbitMQ.Consumer\RabbitMQ.Consumer.csproj", "{E3EE7F2A-19EB-4932-90C7-34B586C328F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fanout", "Fanout", "{3A40C371-7CCC-4501-8D7C-A8E2C199B295}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanout.RabbitMQ.Publisher", "Fanout.RabbitMQ.Publisher\Fanout.RabbitMQ.Publisher.csproj", "{0F45919F-5E2D-43C1-85F7-8E9C52DE6A2D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fanout.RabbitMQ.Consumer", "Fanout.RabbitMQ.Consumer\Fanout.RabbitMQ.Consumer.csproj", "{D9FDF174-9867-4885-86B7-590892E4FC9E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Direct", "Direct", "{CBBAF64F-4E3D-4C77-9A13-AEC810464C39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Direct.RabbitMQ.Consumer", "Direct.RabbitMQ.Consumer\Direct.RabbitMQ.Consumer.csproj", "{4C57B3ED-249A-4618-9DA8-2F28E23EB592}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Direct.RabbitMQ.Publisher", "Direct.RabbitMQ.Publisher\Direct.RabbitMQ.Publisher.csproj", "{34C76FC8-07E3-4699-9EAB-32D317F027E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +33,31 @@ Global
 		{E3EE7F2A-19EB-4932-90C7-34B586C328F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3EE7F2A-19EB-4932-90C7-34B586C328F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3EE7F2A-19EB-4932-90C7-34B586C328F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F45919F-5E2D-43C1-85F7-8E9C52DE6A2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F45919F-5E2D-43C1-85F7-8E9C52DE6A2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F45919F-5E2D-43C1-85F7-8E9C52DE6A2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F45919F-5E2D-43C1-85F7-8E9C52DE6A2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9FDF174-9867-4885-86B7-590892E4FC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9FDF174-9867-4885-86B7-590892E4FC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9FDF174-9867-4885-86B7-590892E4FC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9FDF174-9867-4885-86B7-590892E4FC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C57B3ED-249A-4618-9DA8-2F28E23EB592}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C57B3ED-249A-4618-9DA8-2F28E23EB592}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C57B3ED-249A-4618-9DA8-2F28E23EB592}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C57B3ED-249A-4618-9DA8-2F28E23EB592}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34C76FC8-07E3-4699-9EAB-32D317F027E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34C76FC8-07E3-4699-9EAB-32D317F027E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34C76FC8-07E3-4699-9EAB-32D317F027E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34C76FC8-07E3-4699-9EAB-32D317F027E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0F45919F-5E2D-43C1-85F7-8E9C52DE6A2D} = {3A40C371-7CCC-4501-8D7C-A8E2C199B295}
+		{D9FDF174-9867-4885-86B7-590892E4FC9E} = {3A40C371-7CCC-4501-8D7C-A8E2C199B295}
+		{4C57B3ED-249A-4618-9DA8-2F28E23EB592} = {CBBAF64F-4E3D-4C77-9A13-AEC810464C39}
+		{34C76FC8-07E3-4699-9EAB-32D317F027E6} = {CBBAF64F-4E3D-4C77-9A13-AEC810464C39}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA52465D-3660-4C0A-B9E2-E66CEDDFD4A7}

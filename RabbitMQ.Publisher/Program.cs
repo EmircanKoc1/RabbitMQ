@@ -19,6 +19,11 @@ namespace RabbitMQ.Publisher
             //Queue oluşturma
             channel.QueueDeclare(queue: "example-queue", exclusive: false);
 
+            
+
+
+
+
             //Queue ya mesaj gönderme 
             var message = Encoding.UTF8.GetBytes("Merhaba");
 

@@ -30,7 +30,7 @@ namespace RabbitMQ.Consumer
                 Console.WriteLine(Encoding.UTF8.GetString(e.Body.Span));
 
             };
-
+            
             Console.ReadLine();
         }
     }
