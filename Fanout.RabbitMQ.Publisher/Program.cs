@@ -19,7 +19,9 @@ namespace Fanout.RabbitMQ.Publisher
             for (int i = 0; i < 100; i++)
             {
                 Task.Delay(100).Wait();
+
                 var message = Encoding.UTF8.GetBytes($"Merhaba {i}");
+
                 channel.BasicPublish(
                     exchange: "fanout-exchange-example",
                     routingKey: string.Empty,

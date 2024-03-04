@@ -2,7 +2,7 @@
 using RabbitMQ.Client.Events;
 using System.Text;
 
-namespace Fanout.RabbitMQ.Consumer
+namespace RabbitMQ.Topic.Consumer
 {
     public class Program
     {
@@ -10,28 +10,27 @@ namespace Fanout.RabbitMQ.Consumer
         {
             ConnectionFactory factory = new();
             factory.Uri = new("amqps://owfxtlir:YDA64RKMRrIw4-JlYjN1t0JMtW2hs8VV@shark.rmq.cloudamqp.com/owfxtlir");
-            using IConnection connection = factory.CreateConnection();
-            using IModel channel = connection.CreateModel();
 
+            IConnection connection = factory.CreateConnection();
+            IModel channel = connection.CreateModel();
 
-            channel.ExchangeDeclare(exchange: "fanout-exchange-example", type: ExchangeType.Fanout);
+            channel.ExchangeDeclare(
+                exchange: "topic-exchange-example",
+                type: ExchangeType.Topic);
 
-            var _queueName = "ozel-kuyruk";
-
-            channel.QueueDeclare(
-                queue: _queueName,
-                exclusive: false);
+            Console.WriteLine("dinlecek topic formatını belirtiniz");
+            string topic = Console.ReadLine();
+            string queueName = channel.QueueDeclare().QueueName;
 
             channel.QueueBind(
-                queue: _queueName,
-                exchange: "fanout-exchange-example",
-                routingKey: string.Empty);
-
+                queue: queueName,
+                exchange: "topic-exchange-example",
+                routingKey: topic);
 
             EventingBasicConsumer consumer = new(channel);
 
             channel.BasicConsume(
-                queue: _queueName,
+                queue: queueName,
                 autoAck: true,
                 consumer: consumer);
 
@@ -40,8 +39,6 @@ namespace Fanout.RabbitMQ.Consumer
                 string message = Encoding.UTF8.GetString(e.Body.Span);
                 Console.WriteLine(message);
             };
-
-            Console.ReadLine();
 
         }
     }

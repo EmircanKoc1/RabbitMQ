@@ -2,9 +2,9 @@
 using RabbitMQ.Client.Events;
 using System.Text;
 
-namespace Direct.RabbitMQ.Consumer
+namespace Direct.RabbitMQ.Consumer2
 {
-    public class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
@@ -22,7 +22,7 @@ namespace Direct.RabbitMQ.Consumer
 
             channel.QueueDeclare(
                 queue: "direct-queue-example",
-                 exclusive: false);
+                exclusive: false);
 
             channel.QueueBind(
                 queue: "direct-queue-example",
@@ -36,7 +36,7 @@ namespace Direct.RabbitMQ.Consumer
                 queue: "direct-queue-example",
                 autoAck: true,
                 consumer: consumer);
-            
+
             consumer.Received += (sender, e) =>
             {
                 var message = Encoding.UTF8.GetString(e.Body.Span);
