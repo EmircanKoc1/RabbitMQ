@@ -2,7 +2,7 @@
 using RabbitMQ.Client.Events;
 using System.Text;
 
-namespace Direct.RabbitMQ.Consumer
+namespace RabbitMQ.PubSub.Consumer
 {
     public class Program
     {
@@ -14,35 +14,38 @@ namespace Direct.RabbitMQ.Consumer
             using IConnection connection = factory.CreateConnection();
             using IModel channel = connection.CreateModel();
 
+            string exchangeName = "example-pub-sub-exchange";
 
             channel.ExchangeDeclare(
-                exchange: "direct-exchange-example",
-                type: ExchangeType.Direct);
+                exchange: exchangeName,
+                type: ExchangeType.Fanout);
 
-            channel.QueueDeclare(
-                queue: "direct-queue-example",
-                 exclusive: false);
+            string queueName = channel.QueueDeclare().QueueName;
 
             channel.QueueBind(
-                queue: "direct-queue-example",
-                exchange: "direct-exchange-example",
-                routingKey: "direct-queue-example");
+                queue: queueName,
+                exchange: exchangeName,
+                routingKey: string.Empty);
+
+
+            //channel.BasicQos(
+            //    prefetchSize: 0,
+            //    prefetchCount: 1,
+            //    global: false);
 
 
             EventingBasicConsumer consumer = new(channel);
 
             channel.BasicConsume(
-                queue: "direct-queue-example",
+                queue: queueName,
                 autoAck: true,
                 consumer: consumer);
-            
+
             consumer.Received += (sender, e) =>
             {
                 var message = Encoding.UTF8.GetString(e.Body.Span);
-                Console.WriteLine(message + "consume edildi");
+                Console.WriteLine(message);
             };
-
-            Console.ReadLine();
 
 
 

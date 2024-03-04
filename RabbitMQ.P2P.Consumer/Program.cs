@@ -2,7 +2,7 @@
 using RabbitMQ.Client.Events;
 using System.Text;
 
-namespace Direct.RabbitMQ.Consumer
+namespace RabbitMQ.P2P.Consumer
 {
     public class Program
     {
@@ -14,36 +14,28 @@ namespace Direct.RabbitMQ.Consumer
             using IConnection connection = factory.CreateConnection();
             using IModel channel = connection.CreateModel();
 
-
-            channel.ExchangeDeclare(
-                exchange: "direct-exchange-example",
-                type: ExchangeType.Direct);
+            string queueName = "example-p2p-queue";
 
             channel.QueueDeclare(
-                queue: "direct-queue-example",
-                 exclusive: false);
-
-            channel.QueueBind(
-                queue: "direct-queue-example",
-                exchange: "direct-exchange-example",
-                routingKey: "direct-queue-example");
-
+                queue: queueName,
+                durable: false,
+                exclusive: false,
+                autoDelete: false);
 
             EventingBasicConsumer consumer = new(channel);
 
             channel.BasicConsume(
-                queue: "direct-queue-example",
+                queue: queueName,
                 autoAck: true,
                 consumer: consumer);
-            
+
+
             consumer.Received += (sender, e) =>
             {
                 var message = Encoding.UTF8.GetString(e.Body.Span);
-                Console.WriteLine(message + "consume edildi");
+                Console.WriteLine(message);
+
             };
-
-            Console.ReadLine();
-
 
 
         }
